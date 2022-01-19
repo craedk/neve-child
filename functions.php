@@ -12,3 +12,6 @@ if ( ! function_exists( 'neve_child_load_css' ) ):
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'neve_child_load_css', 20 );
+
+// Adding excerpt for page
+add_post_type_support( 'page', 'excerpt' );
