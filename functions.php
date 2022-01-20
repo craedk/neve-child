@@ -22,13 +22,12 @@ add_post_type_support( 'page', 'excerpt' );
 
 add_theme_support( 'post-thumbnails' );
 
-if ( function_exists( 'add_image_size' ) ) {
-	add_image_size( 'crae-square-medium-image', 800, 800, true );
-}
+add_image_size( 'crae-square-medium-image', 800, 800, true );
 
-add_filter( 'crae_custom_image_sizes', function( $size_names ) {
-	$new_sizes = array(
-		'crae-square-medium-image' => 'Medium Square Image'
-	);
-	return array_merge( $size_names, $new_sizes );
-});
+add_filter( 'image_size_names_choose', 'my_custom_sizes' );
+
+function my_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'crae-square-medium-image' => __( 'Square for two cols' ),
+    ) );
+}
